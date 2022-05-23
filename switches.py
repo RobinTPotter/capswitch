@@ -70,6 +70,7 @@ class Cap():
     def start(self):
         self.thread = Thread(None, self.check)
         self.thread.start()
+
     def check(self):
         self.on_time = time.time()
         #print(self)
@@ -89,6 +90,7 @@ class Cap():
                     low(self.send)
                 self.state = not self.state
                 rec= check(self.receive)
+                #print("rec {} state {}".format(rec,self.state))
                 if rec!=self.state:
                     #print("ding")
                     self.value += int( 100000000 * ( time.time() - self.on_time ) )
@@ -110,18 +112,18 @@ class Cap():
 
 
 c = Cap(S1SEND, S1REC)
-c2 = Cap(S2SEND, S2REC)
-c3 = Cap(S3SEND, S3REC)
+#c2 = Cap(S2SEND, S2REC)
+#c3 = Cap(S3SEND, S3REC)
 
 c.start()
-c2.start()
-c3.start()
+#c2.start()
+#c3.start()
 
 time.sleep(30)
 
 c.running = False
-c2.running = False
-c3.running = False
+#c2.running = False
+#c3.running = False
 
 
 #GPIO.cleanup()
