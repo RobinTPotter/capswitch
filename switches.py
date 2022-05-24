@@ -91,6 +91,9 @@ class Cap():
                 self.state = not self.state
                 rec= check(self.receive)
                 #print("rec {} state {}".format(rec,self.state))
+                while rec==self.state:
+                    time.sleep(0.0001)
+                    
                 if rec!=self.state:
                     #print("ding")
                     self.value += int( 100000000 * ( time.time() - self.on_time ) )
@@ -98,7 +101,7 @@ class Cap():
                     #self.running = False
                 #else:
                     #print("dong")
-                time.sleep(0.0001)
+                time.sleep(0.001)
 
         #print(dir(self.thread))
 
